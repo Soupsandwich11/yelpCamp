@@ -1,0 +1,20 @@
+<% include ../partial/header %>
+
+<div classs="row">
+    <div class="col-md-4">
+        <h1><%= user.firstName + " " + user.lastName%></h1>
+        <div class="thumbnail">
+           <img src="<%= user.avatar %>" alt="User Profile Image">  
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h3><%= user.firstName %>'s Campgrounds</h3>
+        <% campgrounds.forEach(function(campground){ %>
+            <ul>
+                 <li><a href="/campgrounds/<%= campground.id %>"><%= campground.name %></a></li>
+            </ul>
+        <% }) %>
+    </div>
+</div>
+
+<% include ../partial/footer %>
