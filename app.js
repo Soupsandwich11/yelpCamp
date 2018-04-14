@@ -24,7 +24,7 @@ app.use(express.static(__dirname + "/public"));
 
 //passport conf
 app.use(require("express-session")({
-    secret: "this is my secret key that no one should know",
+    secret: process.env.DATABASESECRET,
     resave: false,
     saveUninitialized: false
 }));
