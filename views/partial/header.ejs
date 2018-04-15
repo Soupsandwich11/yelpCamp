@@ -38,7 +38,7 @@
             </div>
         </nav>
         
-         <div class=" container">
+         <div class="container">
             <% if(error && error.length > 0){ %>
                 <div class="alert alert-danger">
                     <%= error %>
@@ -48,6 +48,11 @@
                     <div class="alert alert-success">
                         <%= success %>
                     </div>
+            <% } %>
+            <% if(currentUser && currentUser.isAdmin) { %>
+                <div class="alert alert-success">
+                Admin <%= currentUser.username %> is logged in!
+                </div>
             <% } %>
         </div>
         

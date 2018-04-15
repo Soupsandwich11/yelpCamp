@@ -52,7 +52,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     var lat = data[0].latitude;
     var lng = data[0].longitude;
     var location = data[0].formattedAddress;
-    var newCampground = {name: name, price: price, image: image, description: desc, author: author, lat: lat, lng: lng};
+    var newCampground = {name: name, price: price, image: image, description: desc, author: author, location: location, lat: lat, lng: lng};
     Campground.create(newCampground, function(err, newlyCreated){
         if(err){
             console.log(err);
@@ -98,13 +98,12 @@ router.put("/:id", middleware.checkCampgroundOwership,function(req, res){
     var lat = data[0].latitude;
     var lng = data[0].longitude;
     var location = data[0].formattedAddress;
-    var newData = {name: req.body.name, image: req.body.image, description: req.body.description, location: location, lat: lat, lng: lng};
+    var newData = {name: req.body.name, image: req.body.image, price: req.body.price, description: req.body.description, location: location, lat: lat, lng: lng};
     Campground.findByIdAndUpdate(req.params.id, newData, function(err, campground){
         if(err){
             req.flash("error", err.message);
             res.redirect("back");
         } else {
-            console.log(newData);
             req.flash("success","Successfully Updated!");
             res.redirect("/campgrounds/" + campground._id);
         }
